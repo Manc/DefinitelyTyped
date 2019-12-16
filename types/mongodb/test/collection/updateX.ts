@@ -19,6 +19,7 @@ async function run() {
         otherDateField: Date;
         oneMoreDateField: Date;
         fruitTags: string[];
+        optionalTags?: string[];
         subInterfaceField: SubTestModel;
         subInterfaceArray: SubTestModel[];
     }
@@ -94,6 +95,7 @@ async function run() {
     buildUpdateQuery({ $rename: { numberField2: 'stringField' } });
 
     buildUpdateQuery({ $addToSet: { fruitTags: 'stringField' } });
+    buildUpdateQuery({ $addToSet: { optionalTags: 'stringField' } });
     buildUpdateQuery({ $addToSet: { fruitTags: { $each: ['stringField'] } } });
     buildUpdateQuery({ $addToSet: { 'dot.notation': 'stringField' } });
     buildUpdateQuery({ $addToSet: { 'dot.notation': { $each: ['stringfield'] } } });
@@ -104,6 +106,7 @@ async function run() {
     buildUpdateQuery({ $pop: { 'subInterfaceArray.$[]': -1 } });
 
     buildUpdateQuery({ $pull: { fruitTags: 'a' } });
+    buildUpdateQuery({ $pull: { optionalTags: 'a' } });
     buildUpdateQuery({ $pull: { fruitTags: { $in: ['a'] } } });
     buildUpdateQuery({ $pull: { 'dot.notation': 1 } });
     buildUpdateQuery({ $pull: { 'subInterfaceArray.$[]': { $in: ['a'] } } });
